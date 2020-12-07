@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/base.css">
+</head>
+
+<body>
+    <div id="box">
+        <div class="box_top">
+            <h2 class="toptitle">各具特色的英雄</h2>
+            <p>不论喜欢哪种游戏方式，你总能找到适合自己玩法的英雄。</p>
+            <p>掌握他们独特的技能玩法，享受《守望先锋》的无穷乐趣！</p>
+        </div>
+        <div class="box_middle">
+            <div class="middle_box1">
+                <img src="https://overwatch.nosdn.127.net/2/heroes/Sigma/full-portrait.png" alt="">
+            </div>
+            <div class="middle_box2">
+                <h2>“西格玛”</h2>
+                <p>性格古怪的天体物理学家，在一场轨道空间站中的实验事故之后，被改造成了活体兵器。</p>
+            </div>
+        </div>
+        <div class="box_bottom">
+            <ul class="bottom_box">
+                <div id="box_b1">
+                    <li v-for="(heroe, index) in heroes" v-on:mouseover="switchs(heroe, index)">
+                        <a href="">
+                            <img src="heroes[index].icon" alt="">
+                            <span class="heroName">{{heroes[index].name}}</span>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</body>
+
+<script src="./js/heros.js"></script>
+<script>
+    var app = new Vue({
+            el: "#box",
+            data: {
+                heroes: heroes,
+                name:"西格玛",
+                description:"性格古怪的天体物理学家，在一场轨道空间站中的实验事故之后，被改造成了活体兵器。"
+            },
+            methods:{
+                switchs:function(heroe, index){
+                    for(var k=0; k<lis.length; k++){
+                        lis[k].style.background = "#464445";
+                    }
+                    console.log(index);
+                    lis[index].style.background = "red";
+                    this.name = heroes[index].name;
+                    this.description = heroes[index].description;
+                    imgs.src = heroes[index].overlay;
+                }
+            }
+        })
+
+        var lis = document.querySelectorAll(".box1");
+        var imgs = document.querySelector(".box1 img");
+</script>
+
+</html>

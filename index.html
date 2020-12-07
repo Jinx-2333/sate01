@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守望先锋</title>
+    <link rel="stylesheet" href="./css/index.min.css">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/heros.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div class="exhibition">
+            <div class="title">各具特色的英雄</div>
+            <p>不论喜欢哪种游戏方式，你总能找到适合自己玩法的英雄。</p>
+            <p>掌握他们独特的技能玩法，享受《守望先锋》的无穷乐趣！</p>
+
+            <div id="switch">
+                <img v-bind:src="srcs" id="picture"/>
+
+                <div id="introduce">
+                    <div>{{names}}</div>
+                    <p>{{descriptions}}</p>
+                </div>
+            </div>
+
+            <div id="heros">
+                <ul>
+                    <li v-for="(heroe,index) in heroes">
+                        <a href="javascript:;" v-on:mouseover = "mouseovers(index)">
+                            <img v-bind:src="heroes[index].icon" >
+                            <span>{{heroes[index].name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#main",
+            data: {
+                heroes: heroes,
+                srcs:"https://overwatch.nosdn.127.net/2/heroes/Sigma/full-portrait.png",
+                names : "“西格玛”",
+                descriptions : "性格古怪的天体物理学家，在一场轨道空间站中的实验事故之后，被改造成了活体兵器。"
+            },
+                methods:{
+                    mouseovers:function(index){
+                        
+                        this.srcs = this.heroes[index].overlay;
+                        this.names = this.heroes[index].name;
+                        this.descriptions = this.heroes[index].description;
+
+                        for(let i = 0; i < lis.length; i++){
+                            imgs[i].style["width"] = "100%";
+                            as[i].style["background"] = "#464545";
+                        }
+
+                        imgs[index].style["width"] = "120%";
+                        as[index].style["background"] = "#f7931e";
+                    }
+                }
+        });
+        var lis = document.querySelectorAll("#heros ul li");
+        var as = document.querySelectorAll("#heros ul li a");
+        var imgs = document.querySelectorAll("#heros ul li a img");
+    </script>
+</body>
+
+</html>
